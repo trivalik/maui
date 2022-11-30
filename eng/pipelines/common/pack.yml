@@ -19,6 +19,10 @@ parameters:
   type: stepList
   default: []
 
+- name: gitHubToken
+  type: string
+  default: $(Github.Token)
+
 steps:
   - template: provision.yml
     parameters:
@@ -26,6 +30,7 @@ steps:
       poolName: ${{ parameters.poolName }}
       provisioning: true
       provisionatorChannel: ${{ parameters.provisionatorChannel }}
+      gitHubToken: ${{ parameters.gitHubToken }}
 
   - ${{ each step in parameters.prepareSteps }}:
     - ${{ each pair in step }}:
