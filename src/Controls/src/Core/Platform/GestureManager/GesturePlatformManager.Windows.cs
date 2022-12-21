@@ -16,7 +16,7 @@ using Windows.Storage.Streams;
 
 namespace Microsoft.Maui.Controls.Platform
 {
-	class GestureManager : IDisposable
+	class GesturePlatformManager : IDisposable
 	{
 		readonly IPlatformViewHandler _handler;
 		readonly NotifyCollectionChangedEventHandler _collectionChangedHandler;
@@ -32,7 +32,7 @@ namespace Microsoft.Maui.Controls.Platform
 		bool _wasPanGestureStartedSent;
 		bool _wasPinchGestureStartedSent;
 
-		public GestureManager(IViewHandler handler)
+		public GesturePlatformManager(IViewHandler handler)
 		{
 			_handler = (IPlatformViewHandler)handler;
 			_collectionChangedHandler = ModelGestureRecognizersOnCollectionChanged;
@@ -723,7 +723,7 @@ namespace Microsoft.Maui.Controls.Platform
 			//We can't handle ManipulationMode.Scale and System , so we don't support pinch/pan on a scrollview 
 			if (Element is ScrollView)
 			{
-				var logger = Application.Current?.FindMauiContext()?.CreateLogger<GestureManager>();
+				var logger = Application.Current?.FindMauiContext()?.CreateLogger<GesturePlatformManager>();
 				if (hasPinchGesture)
 					logger?.LogWarning("PinchGestureRecognizer is not supported on a ScrollView in Windows Platforms");
 				if (hasPanGesture)
