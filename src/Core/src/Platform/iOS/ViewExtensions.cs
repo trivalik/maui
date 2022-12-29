@@ -238,7 +238,7 @@ namespace Microsoft.Maui.Platform
 				wrapperView.Border = border;
 		}
 
-		public static T? FindDescendantView<T>(this UIView view) where T : UIView
+		internal static T? FindDescendantView<T>(this UIView view, Func<T, bool> predicate) where T : UIView
 		{
 			var queue = new Queue<UIView>();
 			queue.Enqueue(view);
@@ -247,7 +247,7 @@ namespace Microsoft.Maui.Platform
 			{
 				var descendantView = queue.Dequeue();
 
-				if (descendantView is T result)
+				if (descendantView is T result && predicate.Invoke(result))
 					return result;
 
 				for (var i = 0; i < descendantView.Subviews?.Length; i++)
@@ -256,6 +256,9 @@ namespace Microsoft.Maui.Platform
 
 			return null;
 		}
+
+		public static T? FindDescendantView<T>(this UIView view) where T : UIView =>
+			FindDescendantView<T>(view, (_) => true);
 
 		public static void UpdateBackgroundLayerFrame(this UIView view)
 		{
