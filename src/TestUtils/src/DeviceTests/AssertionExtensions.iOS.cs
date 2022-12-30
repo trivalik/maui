@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using CoreAnimation;
 using CoreGraphics;
@@ -527,6 +528,22 @@ namespace Microsoft.Maui.DeviceTests
 			}
 
 			return platformView;
+		}
+
+
+		public static void TapBackButton(this UINavigationBar uINavigationBar)
+		{
+			var item = uINavigationBar.FindDescendantView<UIView>(result =>
+			{
+				return result.Class.Name?.Contains("UIButtonBarButton", StringComparison.OrdinalIgnoreCase) == true;
+			});
+
+			_ = item ?? throw new Exception("Unable to locate back button view");
+
+			var recognizer = item!.GestureRecognizers!.OfType<UITapGestureRecognizer>().FirstOrDefault();
+			_ = recognizer ?? throw new Exception("Unable to Back Button TapGestureRecognizer");
+
+			recognizer.State = UIGestureRecognizerState.Ended;
 		}
 	}
 }
