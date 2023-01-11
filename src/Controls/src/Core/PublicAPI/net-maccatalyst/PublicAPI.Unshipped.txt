@@ -3,3 +3,6 @@
 ~Microsoft.Maui.Controls.Handlers.Compatibility.FrameRenderer.FrameRenderer(Microsoft.Maui.IPropertyMapper mapper) -> void
 ~Microsoft.Maui.Controls.Handlers.Compatibility.FrameRenderer.FrameRenderer(Microsoft.Maui.IPropertyMapper mapper, Microsoft.Maui.CommandMapper commandMapper) -> void
 override Microsoft.Maui.Controls.View.ChangeVisualState() -> void
+~static Microsoft.Maui.Controls.CheckBox.ControlsCheckBoxMapper -> IPropertyMapper<ICheckBox, CheckBoxHandler>
+~static Microsoft.Maui.Controls.Platform.FormattedStringExtensions.ToNSAttributedString(this Microsoft.Maui.Controls.FormattedString! formattedString, IFontManager! fontManager, double defaultLineHeight = -1, TextAlignment! defaultHorizontalAlignment = null, Font? defaultFont = null, Color? defaultColor = null, TextTransform! defaultTextTransform = null) -> Foundation.NSAttributedString!
+~static Microsoft.Maui.Controls.Platform.FormattedStringExtensions.ToNSAttributedString(this Microsoft.Maui.Controls.Span! span, IFontManager! fontManager, double defaultLineHeight = -1, TextAlignment! defaultHorizontalAlignment = null, Font? defaultFont = null, Color? defaultColor = null, TextTransform! defaultTextTransform = null) -> Foundation.NSAttributedString!
